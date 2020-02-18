@@ -12,11 +12,18 @@ class MyApp extends StatelessWidget {
 					title: Text('First App'),
 				),
 				body: Column(
-					children: <Widget>[
+					children: <Widget>[   									// <Widget> []  : merupakan list yang berobjek Widget
 						Text('Pertanyaan!'),
 						RaisedButton(child: Text('Pertanyaan 1'), onPressed: showQuestion	),
-						RaisedButton(child: Text('Pertanyaan 2'), onPressed: showQuestion	),
-						RaisedButton(child: Text('Pertanyaan 3'), onPressed: showQuestion 	)
+						RaisedButton(
+							child: Text('Pertanyaan 2'), 
+							onPressed: (){									// "() { }" Anonim Function
+								print('Tombol 2 ditekan');
+						}	),
+						RaisedButton(
+							child: Text('Pertanyaan 3'), 
+							onPressed: () => print('Tombol 3 Ditekan'), 	// "() =>" Anonim function 
+						)
 					],
 				),
 				),
@@ -26,6 +33,6 @@ class MyApp extends StatelessWidget {
 
 
 	void showQuestion(){
-		print("tombol ditekan");
+		print("tombol ditekan 1");
 	}
 }
