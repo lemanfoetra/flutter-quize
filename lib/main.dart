@@ -14,12 +14,18 @@ class MyApp extends StatelessWidget {
 				body: Column(
 					children: <Widget>[
 						Text('Pertanyaan!'),
-						RaisedButton(child: Text('Pertanyaan 1'), onPressed: null),
-						RaisedButton(child: Text('Pertanyaan 2'), onPressed: null),
-						RaisedButton(child: Text('Pertanyaan 3'), onPressed: null)
+						RaisedButton(child: Text('Pertanyaan 1'), onPressed: showQuestion	),
+						RaisedButton(child: Text('Pertanyaan 2'), onPressed: showQuestion	),
+						RaisedButton(child: Text('Pertanyaan 3'), onPressed: showQuestion 	)
 					],
 				),
 				),
 			);
+	}
+
+
+
+	void showQuestion(){
+		print("tombol ditekan");
 	}
 }
