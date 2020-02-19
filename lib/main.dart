@@ -2,7 +2,45 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+
+}
+
+
+
+
+class _MyAppState extends State<MyApp> {
+
+	int questionIndex = 0;
+
+	var question = [
+		"Apa Warna Favorit Kamu? ",
+		"Apa Makanan Kesukaan Kamu ?",
+		"Apa Film Kesukaan Kamu ?",
+	];
+
+
+	void nextQuestion(){
+		setState(() {
+			if(questionIndex < (question.length - 1)){
+				questionIndex = questionIndex + 1;
+			}
+		});
+	}
+
+	void backQuestion(){
+		setState(() {
+		  if(questionIndex > 0){
+			  questionIndex = questionIndex - 1;
+		  }
+		});
+	}
+
 
 
 	@override
@@ -12,51 +50,25 @@ class MyApp extends StatelessWidget {
 				appBar: AppBar(
 					title: Text('First App'),
 				),
-				body: Container(
-          child: NumberScreen(),
-        ),
-			),
-		);
+				body: Column(
+					children: <Widget>[   								
+						Text(question[questionIndex]),
+						RaisedButton(
+							child: Text('Lanjut'), 
+							onPressed: nextQuestion	
+						),
+						RaisedButton(
+							child: Text('Kembali'), 
+							onPressed:  backQuestion
+						),
+						RaisedButton(
+							child: Text('Pertanyaan 3'), 
+							onPressed: () => print('Tombol 3 Ditekan'), 
+						)
+					],
+				),
+				),
+			);
 	}
-
-}
-
-
-class NumberScreen extends StatefulWidget {
-
-  @override
-  NumberScreenState createState(){
-    return NumberScreenState();
-  }
-  
-}
-
-
-
-class NumberScreenState extends State<NumberScreen>{
-
-  int number = 10;
-  Widget build(BuildContext context){
-    return Stack(
-      children: <Widget>[
-        Center(
-          child: Text(
-            this.number.toString(), 
-            style: TextStyle( fontSize: 30 ),),
-        ),
-        Positioned(
-          bottom: 50,
-          right: 50,
-          child: FloatingActionButton( 
-            child: Icon(Icons.plus_one),
-            onPressed: (){ 
-              setState(() {
-                this.number = this.number + 1;
-            }); 
-          },)
-        ),
-      ],
-    );
-  }
 
 }
