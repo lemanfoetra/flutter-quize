@@ -4,6 +4,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
+
 	@override
 	Widget build(BuildContext context) {
 		return MaterialApp(
@@ -11,28 +12,51 @@ class MyApp extends StatelessWidget {
 				appBar: AppBar(
 					title: Text('First App'),
 				),
-				body: Column(
-					children: <Widget>[   									// <Widget> []  : merupakan list yang berobjek Widget
-						Text('Pertanyaan!'),
-						RaisedButton(child: Text('Pertanyaan 1'), onPressed: showQuestion	),
-						RaisedButton(
-							child: Text('Pertanyaan 2'), 
-							onPressed: (){									// "() { }" Anonim Function
-								print('Tombol 2 ditekan');
-						}	),
-						RaisedButton(
-							child: Text('Pertanyaan 3'), 
-							onPressed: () => print('Tombol 3 Ditekan'), 	// "() =>" Anonim function 
-						)
-					],
-				),
-				),
-			);
+				body: Container(
+          child: NumberScreen(),
+        ),
+			),
+		);
 	}
 
+}
 
 
-	void showQuestion(){
-		print("tombol ditekan 1");
-	}
+class NumberScreen extends StatefulWidget {
+
+  @override
+  NumberScreenState createState(){
+    return NumberScreenState();
+  }
+  
+}
+
+
+
+class NumberScreenState extends State<NumberScreen>{
+
+  int number = 10;
+  Widget build(BuildContext context){
+    return Stack(
+      children: <Widget>[
+        Center(
+          child: Text(
+            this.number.toString(), 
+            style: TextStyle( fontSize: 30 ),),
+        ),
+        Positioned(
+          bottom: 50,
+          right: 50,
+          child: FloatingActionButton( 
+            child: Icon(Icons.plus_one),
+            onPressed: (){ 
+              setState(() {
+                this.number = this.number + 1;
+            }); 
+          },)
+        ),
+      ],
+    );
+  }
+
 }
