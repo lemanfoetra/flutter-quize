@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     return _MyAppState();
   }
-
 }
 
-
-
-
 class _MyAppState extends State<MyApp> {
-
 	int questionIndex = 0;
 
 	var question = [
@@ -24,24 +20,21 @@ class _MyAppState extends State<MyApp> {
 		"Apa Film Kesukaan Kamu ?",
 	];
 
-
-	void nextQuestion(){
+	void nextQuestion() {
 		setState(() {
-			if(questionIndex < (question.length - 1)){
+			if (questionIndex < (question.length - 1)) {
 				questionIndex = questionIndex + 1;
 			}
 		});
 	}
 
-	void backQuestion(){
+	void backQuestion() {
 		setState(() {
-		  if(questionIndex > 0){
-			  questionIndex = questionIndex - 1;
-		  }
+			if (questionIndex > 0) {
+				questionIndex = questionIndex - 1;
+			}
 		});
 	}
-
-
 
 	@override
 	Widget build(BuildContext context) {
@@ -51,24 +44,23 @@ class _MyAppState extends State<MyApp> {
 					title: Text('First App'),
 				),
 				body: Column(
-					children: <Widget>[   								
-						Text(question[questionIndex]),
+					children: <Widget>[
+						Question(
+							question[questionIndex]
+						),
 						RaisedButton(
 							child: Text('Lanjut'), 
-							onPressed: nextQuestion	
-						),
+							onPressed: nextQuestion),
 						RaisedButton(
 							child: Text('Kembali'), 
-							onPressed:  backQuestion
-						),
+							onPressed: backQuestion),
 						RaisedButton(
-							child: Text('Pertanyaan 3'), 
-							onPressed: () => print('Tombol 3 Ditekan'), 
+							child: Text('Pertanyaan 3'),
+							onPressed: () => print('Tombol 3 Ditekan'),
 						)
 					],
 				),
-				),
-			);
+			),
+		);
 	}
-
 }
