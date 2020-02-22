@@ -16,26 +16,18 @@ class _MyAppState extends State<MyApp> {
 	int questionIndex = 0;
 
 	var question = [
-		"Apa Warna Favorit Kamu? ",
-		"Apa Makanan Kesukaan Kamu ?",
-		"Apa Film Kesukaan Kamu ?",
+		{ 'questionText': 'Apa Warna Favoritmu ?', 'answers' : ['Biru', 'Hijau', 'Merah'] },
+    { 'questionText': 'Sipa Guru Favoritmu ?', 'answers' : ['Leman', 'Leman', 'Leman'] },
 	];
 
-	void nextQuestion() {
-		setState(() {
-			if (questionIndex < (question.length - 1)) {
-				questionIndex = questionIndex + 1;
-			}
-		});
-	}
 
-	void backQuestion() {
-		setState(() {
-			if (questionIndex > 0) {
-				questionIndex = questionIndex - 1;
-			}
-		});
-	}
+  void answerQuestion(){
+    setState(() {
+      if(questionIndex < (question.length - 1) ) {
+        questionIndex = questionIndex + 1;
+      }
+    });
+  }
 
 	@override
 	Widget build(BuildContext context) {
@@ -47,11 +39,12 @@ class _MyAppState extends State<MyApp> {
 				body: Column(
 					children: <Widget>[
 						Question(
-							question[questionIndex]
+							question[questionIndex]['questionText']
 						),
-            Answer(nextQuestion),
-						Answer(nextQuestion),
-					  Answer(nextQuestion)
+            ...(question[questionIndex]['answers'] as List<String>).map((jawaban) {
+              return Answer(answerQuestion, jawaban);
+            }).toList(),
+
 					],
 				),
 			),
