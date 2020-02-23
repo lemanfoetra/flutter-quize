@@ -18,12 +18,15 @@ class _MyAppState extends State<MyApp> {
 	var question = [
 		{ 'questionText': 'Apa Warna Favoritmu ?', 'answers' : ['Biru', 'Hijau', 'Merah'] },
     { 'questionText': 'Sipa Guru Favoritmu ?', 'answers' : ['Leman', 'Leman', 'Leman'] },
+    { 'questionText': 'Berapa hasil dari 5 * 5 ?', 'answers' : ['5', '15', '25'] },
+    { 'questionText': 'Apa Nama Ibukota Jepang ?', 'answers' : ['Jakarta', 'Bandung', 'Tokyo'] },
+    { 'questionText': 'Bagaimana bentuk suara kucing ?', 'answers' : ['gugug', 'cess', 'miau'] },
 	];
 
 
   void answerQuestion(){
     setState(() {
-      if(questionIndex < (question.length - 1) ) {
+      if(questionIndex < question.length ) {
         questionIndex = questionIndex + 1;
       }
     });
@@ -36,17 +39,17 @@ class _MyAppState extends State<MyApp> {
 				appBar: AppBar(
 					title: Text('First App'),
 				),
-				body: Column(
-					children: <Widget>[
+				body: questionIndex < question.length ? Column(
+					children: 
+          <Widget>[
 						Question(
 							question[questionIndex]['questionText']
 						),
             ...(question[questionIndex]['answers'] as List<String>).map((jawaban) {
               return Answer(answerQuestion, jawaban);
             }).toList(),
-
 					],
-				),
+				) : Center( child: Text('Anda telah menyelesaikan kuis'), ) ,
 			),
 		);
 	}
